@@ -1,4 +1,5 @@
 ﻿using Connectify.ConsoleUI.SubMenus;
+using Connectify.ConsoleUI.SubMenus.InnerMenu;
 using Connectify.Services;
 using Spectre.Console;
 
@@ -10,12 +11,16 @@ public class MainMenu
     private PostService postService;
 
     private LoginMenu loginMenu;
+    private RegisterMenu registerMenu;
+    private PostMenu postMenu;
     public MainMenu()
     {
         this.userService = new UserService();
         this.postService = new PostService(userService);
 
+
         this.loginMenu = new LoginMenu(userService);
+        this.registerMenu = new RegisterMenu(userService);
     }
     public async Task Display()
     {
@@ -33,9 +38,9 @@ public class MainMenu
             {
                 case "Register":
                     Console.Clear();
-                    
+                    registerMenu.Register();
                     break;
-                case "Login":
+                case "Login\n":
                     Console.Clear();
                     loginMenu.Login();
                     break;

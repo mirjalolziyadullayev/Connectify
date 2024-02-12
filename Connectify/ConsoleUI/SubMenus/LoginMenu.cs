@@ -1,4 +1,4 @@
-﻿using Connectify.Interfaces;
+﻿using Connectify.ConsoleUI.SubMenus.InnerMenu;
 using Connectify.Services;
 using Spectre.Console;
 
@@ -6,7 +6,8 @@ namespace Connectify.ConsoleUI.SubMenus;
 
 public class LoginMenu
 {
-    UserService userService;
+    private UserService userService;
+    private PostMenu postMenu;
     public LoginMenu(UserService userService)
     {
         this.userService = userService;
@@ -15,19 +16,33 @@ public class LoginMenu
     {
         Console.Clear();
 
-        reenter:
+    reenter:
         var id = AnsiConsole.Ask<int>("Enter your [green]ID[/]:");
 
-        var user = userService.Get(id);
+        var user = await userService.Get(id);
 
-        if (user != null)
+        if (user == null)
         {
             AnsiConsole.WriteLine("User is not found");
             goto reenter;
         }
         else
         {
+            AnsiConsole.WriteLine("Success");
+            Thread.Sleep(1000);
+            AnsiConsole.Status()
+            .Start("Login...", ctx =>
+            {
 
-        }   
+                ctx.Status("loading data...");
+                ctx.Spinner(Spinner.Known.Star);
+                ctx.SpinnerStyle(Style.Parse("green"));
+
+                AnsiConsole.MarkupLine("In process...");
+                Thread.Sleep(2000);
+            });
+            postMenu = new PostMenu(user);
+            postMenu.Display();
+        }
     }
 }
