@@ -11,6 +11,7 @@ public class PostMenu
 	}
 	public async Task Display()
 	{
-
-	}
+        await Console.Out.WriteLineAsync("Service is out of work!\n Press any key to exit...");
+		Console.ReadLine();
+    }
 }
