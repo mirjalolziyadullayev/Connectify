@@ -24,11 +24,10 @@ public class RegisterMenu
         var created = await userService.Create(createUser);
 
         AnsiConsole.Clear();
-        AnsiConsole.Write("Successfully created!");
+        AnsiConsole.WriteLine("Successfully created!");
 
         var user = await userService.Get(created.Id);
 
-        AnsiConsole.WriteLine("Success");
         Thread.Sleep(1000);
         AnsiConsole.Status()
         .Start("Login...", ctx =>
@@ -41,6 +40,7 @@ public class RegisterMenu
             AnsiConsole.MarkupLine("In process...");
             Thread.Sleep(2000);
         });
+        Console.Clear();
         postMenu = new PostMenu(user);
         postMenu.Display();
     }

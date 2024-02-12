@@ -28,7 +28,7 @@ public class LoginMenu
         }
         else
         {
-            AnsiConsole.WriteLine("Success");
+            AnsiConsole.WriteLine("Success\n");
             Thread.Sleep(1000);
             AnsiConsole.Status()
             .Start("Login...", ctx =>
@@ -41,6 +41,7 @@ public class LoginMenu
                 AnsiConsole.MarkupLine("In process...");
                 Thread.Sleep(2000);
             });
+            Console.Clear();
             postMenu = new PostMenu(user);
             postMenu.Display();
         }
