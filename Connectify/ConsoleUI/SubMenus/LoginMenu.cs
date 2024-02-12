@@ -15,22 +15,19 @@ public class LoginMenu
     {
         Console.Clear();
 
-        var firstname = AnsiConsole.Ask<string>("Enter your [green]FirtsName[/]:");
-        var lastname = AnsiConsole.Ask<string>("Enter your [green]LastName[/]:");
+        reenter:
+        var id = AnsiConsole.Ask<int>("Enter your [green]ID[/]:");
 
-        var user
+        var user = userService.Get(id);
 
-        var table = new Table();
+        if (user != null)
+        {
+            AnsiConsole.WriteLine("User is not found");
+            goto reenter;
+        }
+        else
+        {
 
-        table.AddColumn("Created Music");
-
-        table.AddRow($"[green]MusicID[/]: {newMusic.Id}");
-        table.AddRow($"[green]Music's Name[/]: {newMusic.Name}");
-        table.AddRow($"[green]Music's Author[/]: {newMusic.Author}");
-        table.AddRow($"[green]Music's Genre[/]: {newMusic.Genre}");
-
-        AnsiConsole.Write(table);
-
-        break;
+        }   
     }
 }

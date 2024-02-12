@@ -46,18 +46,15 @@ public class MessageService : IMessageService
 
         return message;
     }
-
-    public bool Delete(int id)
+    public async ValueTask<bool> Delete(int id)
     {
-        
+        return false;
     }
-
-    public Message Get(int id)
+    public async ValueTask<Message> Get(int id)
     {
         throw new NotImplementedException();
     }   
-
-    public List<Message> GetAllByUserId(int userId)
+    public async ValueTask<List<Message>> GetAllByUserId(int userId)
     {
         var data = File.ReadAllText(Constants.MESSAGES_PATH);
         var Messages = JsonConvert.DeserializeObject<List<Message>>(data) ?? new List<Message>();
@@ -72,9 +69,8 @@ public class MessageService : IMessageService
         }
         return result;
     }
-
-    public Message Update(int id, Message message)
+    public async ValueTask<Message> Update(int id, Message message)
     {
-        
+        return null;
     }
 }

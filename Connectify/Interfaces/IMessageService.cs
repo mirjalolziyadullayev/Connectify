@@ -4,9 +4,9 @@ namespace Connectify.Interfaces;
 
 public interface IMessageService
 {
-    Message Create(Message message);
-    Message Update(int id, Message message);
-    bool Delete(int id);
-    Message Get(int id);
-    List<Message> GetAll();
+    ValueTask<Message> Create(Message message);
+    ValueTask<bool> Delete(int id);
+    ValueTask<Message> Get(int id);
+    ValueTask<List<Message>> GetAllByUserId(int userId);
+    ValueTask<Message> Update(int id, Message message);
 }
