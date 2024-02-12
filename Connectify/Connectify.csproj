@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\messages.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Data\messages.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ConsoleUI\" />
   </ItemGroup>
 
